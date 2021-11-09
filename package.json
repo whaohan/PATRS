@@ -1,0 +1,52 @@
+{
+  "name": "koa-template",
+  "version": "1.0.0",
+  "description": "A Template Repository based on Koa",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test": "nodemon -r dotenv/config bin/test.ts | bunyan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zsz12251665/koa-template.git"
+  },
+  "keywords": [
+    "koa",
+    "template"
+  ],
+  "author": "zsz12251665",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zsz12251665/koa-template/issues"
+  },
+  "homepage": "https://github.com/zsz12251665/koa-template#readme",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.1.1",
+    "bunyan": "^1.8.15",
+    "dotenv": "^10.0.0",
+    "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.3",
+    "koa-body": "^4.2.0",
+    "koa-helmet": "^6.1.0",
+    "koa-static": "^5.0.0",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.7",
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/koa": "^2.13.4",
+    "@types/koa__cors": "^3.0.3",
+    "@types/koa__router": "^8.0.8",
+    "@types/koa-static": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.13",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
