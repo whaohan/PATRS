@@ -1,5 +1,6 @@
 import app from '../app';
 import logger from '../lib/logger';
+import ORM from '../lib/orm';
 
 const port = process.env.PORT;
 
@@ -9,6 +10,8 @@ async function createServer() {
 	 * e. g.
 	 * await sequelize.authenticate();
 	 */
+	await ORM.init();
+
 	const server = app.listen(port)
 		.on('error', (error) => {
 			setImmediate(() => {
