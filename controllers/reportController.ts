@@ -1,11 +1,11 @@
 import { RouterContext } from '@koa/router';
-import { Report } from '../entities/Report';
-import logger from '../lib/logger';
-import ORM from '../lib/orm';
+import jwt from '../lib/jwt';
+import Report from '../models/Report';
 
 export async function get(ctx: RouterContext): Promise<void> {
-	const repo = ORM.em.getRepository(Report);
-	const reports = await repo.findAll({ limit: undefined, offset: undefined });
-	logger.info(reports.map((report) => report.id));
-	ctx.throw(501);
+	const { user } = await jwt.interpret(<string>ctx.headers.authorization)
+		.catch((error) => ctx.throw(401, error.message));
+	const reports = await Report.list(user);
+	ctx.status = 200;
+	ctx.body = reports;
 }

@@ -1,4 +1,5 @@
-import { Entity, Enum, PrimaryKey, PrimaryKeyType, Property } from '@mikro-orm/core';
+import { Entity, Enum, ManyToOne, PrimaryKey, PrimaryKeyType, Property } from '@mikro-orm/core';
+import { User } from './User';
 
 @Entity()
 export class Report {
@@ -15,6 +16,9 @@ export class Report {
 
 	@Property()
 	address!: string;
+
+	@ManyToOne()
+	user!: User
 
 	@Enum()
 	status: ReportStatus = ReportStatus.PENDING;

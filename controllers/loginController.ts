@@ -1,26 +1,25 @@
 import { RouterContext } from '@koa/router';
 import Joi from 'joi';
-import { User } from '../entities/User';
 import jwt from '../lib/jwt';
-import ORM from '../lib/orm';
-
-export async function get(ctx: RouterContext): Promise<void> {
-	ctx.throw(501);
-}
+import User from '../models/User';
 
 const schema = Joi.object({
 	id: Joi.string().required(),
 	password: Joi.string().required()
 });
 
-export async function post(ctx: RouterContext): Promise<void> {
-	const body: Record<string, string> = await schema.validateAsync(ctx.request.body);
-	const repo = ORM.em.getRepository(User);
-	const user = await repo.findOne(body.id);
-	if (user !== null && user.authenticate(body.password)) {
-		ctx.status = 200;
-		ctx.body = jwt.sign({ user: body.id }, jwt.options.session);
-	} else
-		ctx.throw(403, 'ID or password is incorrect!');
+export async function get(ctx: RouterContext): Promise<void> {
 	ctx.throw(501);
+}
+
+export async function post(ctx: RouterContext): Promise<void> {
+	const { id, password } = await schema.validateAsync(ctx.request.body)
+		.catch((error) => ctx.throw(400, error.details));
+	if (await User.login(id, password)) {
+		ctx.status = 200;
+		ctx.body = { id, token: jwt.sign({ user: id }, jwt.options.session) };
+	} else {
+		ctx.status = 403;
+		ctx.body = 'ID or password is wrong!';
+	}
 }

@@ -22,7 +22,7 @@ function sign(content: object, options: SignOptions): string {
  * @returns {JwtPayload} Token content
  * @throws {JsonWebTokenError} Error when interpreting
  */
-function interpret(token: string): JwtPayload {
+async function interpret(token: string): Promise<JwtPayload> {
 	return <JwtPayload>verify(token, secret, { issuer });
 }
 
