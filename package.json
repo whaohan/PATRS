@@ -6,7 +6,7 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "test": "nodemon -r dotenv/config bin/test.ts | bunyan"
+    "test": "nodemon -r dotenv/config bin/test.ts --ignore migrations | bunyan"
   },
   "repository": {
     "type": "git",
