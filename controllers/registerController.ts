@@ -15,9 +15,7 @@ export async function post(ctx: RouterContext): Promise<void> {
 	const { id, password } = await schema.validateAsync(ctx.request.body)
 		.catch((error) => ctx.throw(400, error.details));
 	if (await User.register(id, password)) {
-		// ctx.status = 201;
-		// ctx.body = `User ${id} has registered successfully!`;
-		ctx.render('login');
+		ctx.response.redirect('/login'); 
 	} else {
 		ctx.status = 403;
 		ctx.body = 'User ID has been occupied!';

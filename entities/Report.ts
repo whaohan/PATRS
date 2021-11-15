@@ -25,7 +25,7 @@ export class Report {
 }
 
 export enum ReportStatus {
-	PENDING,
-	ASSIGNED,
-	REPAIRED
+	PENDING = 'pending',
+	ASSIGNED = 'assigned',
+	REPAIRED = 'repaired'
 }

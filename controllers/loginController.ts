@@ -2,6 +2,7 @@ import { RouterContext } from '@koa/router';
 import Joi from 'joi';
 import jwt from '../lib/jwt';
 import User from '../models/User';
+import Report from '../models/Report';
 
 const schema = Joi.object({
 	id: Joi.string().required(),
@@ -16,8 +17,8 @@ export async function post(ctx: RouterContext): Promise<void> {
 	const { id, password } = await schema.validateAsync(ctx.request.body)
 		.catch((error) => ctx.throw(400, error.details));
 	if (await User.login(id, password)) {
-		ctx.status = 200;
-		ctx.body = { id, token: jwt.sign({ user: id }, jwt.options.session) };
+		ctx.cookies.set('token', jwt.sign({ user: id }, jwt.options.session));
+		ctx.response.redirect('/');
 	} else {
 		ctx.status = 403;
 		ctx.body = 'ID or password is wrong!';
