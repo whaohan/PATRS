@@ -11,9 +11,7 @@ const app = new Koa();
 app.use(cors()); // Allow CORS (Cross-Origin Resource Sharing)
 app.use(helmet()); // Provide security headers
 app.use(bodyParser({ multipart: true })); // Resolve request body
-app.use(views('views',{
-	extension:'ejs'
-}));
+app.use(views('views', { extension: 'ejs' })); // Render views
 app.use(staticServer('static')); // Access static resources
 app.use(router.routes()); // Set up the router
 

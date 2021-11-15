@@ -18,6 +18,6 @@ export async function post(ctx: RouterContext): Promise<void> {
 		.catch((error) => ctx.throw(400, error.details));
 	const { user } = await jwt.interpret(<string>ctx.cookies.get('token'))
 		.catch((error) => ctx.throw(401, error.message));
-	const _ = await Report.create(user, size, location, address);
-	ctx.response.redirect('/');
+	await Report.create(user, size, location, address);
+	ctx.redirect('/');
 }

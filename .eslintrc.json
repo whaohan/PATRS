@@ -16,6 +16,9 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "array-bracket-spacing": [
+      "error"
+    ],
     "brace-style": [
       "error",
       "1tbs",
@@ -23,13 +26,23 @@
         "allowSingleLine": true
       }
     ],
+    "comma-spacing": [
+      "error"
+    ],
     "indent": [
       "error",
       "tab"
     ],
+    "key-spacing": [
+      "error"
+    ],
     "linebreak-style": [
       "error",
       "unix"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
     ],
     "quotes": [
       "error",
