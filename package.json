@@ -1,7 +1,7 @@
 {
-  "name": "koa-template",
+  "name": "phtrs",
   "version": "1.0.0",
-  "description": "A Template Repository based on Koa",
+  "description": "A online pothole tracking and repair system",
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext .ts",
@@ -10,18 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zsz12251665/koa-template.git"
+    "url": "git+https://github.com/whaohan/PHTRS.git"
   },
-  "keywords": [
-    "koa",
-    "template"
-  ],
-  "author": "zsz12251665",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zsz12251665/koa-template/issues"
+    "url": "https://github.com/whaohan/PHTRS/issues"
   },
-  "homepage": "https://github.com/zsz12251665/koa-template#readme",
+  "homepage": "https://github.com/whaohan/PHTRS#readme",
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@koa/router": "^10.1.1",

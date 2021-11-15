@@ -1,5 +1,6 @@
 import { RouterContext } from '@koa/router';
 import Joi from 'joi';
+import logger from '../lib/logger';
 import jwt from '../lib/jwt';
 import User from '../models/User';
 
@@ -17,6 +18,7 @@ export async function post(ctx: RouterContext): Promise<void> {
 		.catch((error) => ctx.throw(400, error.details));
 	if (await User.login(id, password)) {
 		ctx.cookies.set('token', jwt.sign({ user: id }, jwt.options.session));
+		logger.debug('Going to redirect');
 		ctx.redirect('/');
 	} else {
 		await ctx.render('login', { message: 'ID or password is wrong!' });

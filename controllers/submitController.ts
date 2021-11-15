@@ -10,14 +10,18 @@ const schema = Joi.object({
 });
 
 export async function get(ctx: RouterContext): Promise<void> {
-	return ctx.render('submit');
+	return jwt.interpret(<string>ctx.cookies.get('token'))
+		.then(() => ctx.render('submit'))
+		.catch(() => ctx.redirect('/login'));
 }
 
 export async function post(ctx: RouterContext): Promise<void> {
 	const { size, location, address } = await schema.validateAsync(ctx.request.body)
 		.catch((error) => ctx.throw(400, error.details));
-	const { user } = await jwt.interpret(<string>ctx.cookies.get('token'))
-		.catch((error) => ctx.throw(401, error.message));
-	await Report.create(user, size, location, address);
-	ctx.redirect('/');
+	return jwt.interpret(<string>ctx.cookies.get('token'))
+		.then(async ({ user }) => {
+			await Report.create(user, size, location, address);
+			ctx.redirect('/');
+		})
+		.catch(() => ctx.redirect('/login'));
 }

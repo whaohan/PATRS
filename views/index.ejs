@@ -15,27 +15,26 @@
             <div class="card-body">
                 <h3 class="card-title text-center">Pothole Tracking and Repair System</h3>
                 <!-- <p class="card-text">Report the location and severity of potholes!</p> -->
-                <div class="d-flex justify-content-end">
-                    <a href="submit">
-                        <button type="button" class="btn btn-primary">Report Potholes</button>
-                    </a>
-                </div>
             </div>
         </div>
-        <p>The lists of reported potholes:</p>
+        <div class="d-flex justify-content-between">
+            <p>The list of reported potholes:</p>
+            <a href="submit">
+                <button type="button" class="btn btn-primary">Report Potholes</button>
+            </a>
+        </div>
         <div class="boxGroup">
-            <% for (var i = 0; i < reports.length; i++) { %>
+            <% for (const report of reports) { %>
                 <div class="cardBox">
                     <div class="headerBox">
-                        <p>Item <%= i + 1 %></p>
+                        <p>Report #<%= report.id %></p>
                     </div>
                     <div class="bodyBox">
-                        <p>Identifying Number：<%= reports[i].id %></p>
-                        <p>Street Address：<%= reports[i].address %></p>
-                        <p>Size：<%= reports[i].size %></p>
-                        <p>Location：<%= reports[i].location %></p>
+                        <p>Street Address：<%= report.address %></p>
+                        <p>Size：<%= report.size %></p>
+                        <p>Location：<%= report.location %></p>
                         <p>Status：
-                            <span class="badge badge-primary"><%= reports[i].status %></span>
+                            <span class="badge badge-primary"><%= report.status %></span>
                         </p>
                     </div>
                 </div>
