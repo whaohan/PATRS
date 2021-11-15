@@ -10,7 +10,7 @@ const schema = Joi.object({
 });
 
 export async function get(ctx: RouterContext): Promise<void> {
-	await ctx.render('login');
+	await ctx.render('login', {message: ''});
 }
 
 export async function post(ctx: RouterContext): Promise<void> {
@@ -20,7 +20,6 @@ export async function post(ctx: RouterContext): Promise<void> {
 		ctx.cookies.set('token', jwt.sign({ user: id }, jwt.options.session));
 		ctx.response.redirect('/');
 	} else {
-		ctx.status = 403;
-		ctx.body = 'ID or password is wrong!';
+		await ctx.render('login', {message: 'ID or password is wrong!'});
 	}
 }

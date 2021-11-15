@@ -45,3 +45,9 @@ input[type="email"] {
 .login-box {
   margin-top: 15%;
 }
+
+.err-message {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}

@@ -8,7 +8,7 @@ const schema = Joi.object({
 });
 
 export async function get(ctx: RouterContext): Promise<void> {
-	await ctx.render('register');
+	await ctx.render('register', {message: ''});
 }
 
 export async function post(ctx: RouterContext): Promise<void> {
@@ -17,7 +17,6 @@ export async function post(ctx: RouterContext): Promise<void> {
 	if (await User.register(id, password)) {
 		ctx.response.redirect('/login'); 
 	} else {
-		ctx.status = 403;
-		ctx.body = 'User ID has been occupied!';
+		await ctx.render('register', {message: 'User ID has been occupied!'});
 	}
 }
